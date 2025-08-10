@@ -1,0 +1,61 @@
+@import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Custom colors */
+@theme {
+  --color-primary-50: #f0f9f9;
+  --color-primary-100: #d9f2f2;
+  --color-primary-200: #b3e6e6;
+  --color-primary-300: #8dd9d9;
+  --color-primary-400: #66cccc;
+  --color-primary-500: #669999;
+  --color-primary-600: #4d7373;
+  --color-primary-700: #335c5c;
+  --color-primary-800: #1a4646;
+  --color-primary-900: #186666;
+
+  --color-secondary-50: #fffbf0;
+  --color-secondary-100: #fff5d9;
+  --color-secondary-200: #ffebb3;
+  --color-secondary-300: #ffe08d;
+  --color-secondary-400: #ffd666;
+  --color-secondary-500: #ffcc33;
+  --color-secondary-600: #e6b82e;
+  --color-secondary-700: #cca329;
+  --color-secondary-800: #b38f24;
+  --color-secondary-900: #997a1f;
+
+  /* Custom fonts */
+  --font-family-kumbh-sans: var(--font-kumbh-sans), sans-serif;
+  --font-family-inter: var(--font-inter), sans-serif;
+}
+
+/* Utility classes for fonts */
+.font-kumbh-sans {
+  font-family: var(--font-family-kumbh-sans);
+}
+
+.font-inter {
+  font-family: var(--font-family-inter);
+}
+
+/* Navigation link styles */
+.nav-link {
+  color: rgb(75 85 99);
+  transition: 0.2s;
+}
+
+.dark .nav-link {
+  color: rgb(209 213 219);
+}
+
+.nav-link:hover {
+  color: rgb(17 24 39);
+}
+
+.dark .nav-link:hover {
+  color: white;
+}

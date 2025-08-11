@@ -1,48 +1,18 @@
 // app/page.tsx
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { Button } from "flowbite-react";
+import ZohoLeadForm from './components/ZohoLeadForm';
 
-export default function Home() {
+export default async function Home({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
+  const params = await searchParams;
+  const {
+    utm_source = '',
+    utm_medium = '',
+    utm_campaign = '',
+    utm_content = '',
+    utm_term = '',
+  } = params ?? {};
   return (
     <main className="bg-white dark:bg-gray-950">
-      {/* HEADER (sticky) */}
-      <header className="sticky top-0 z-40 w-full border-b border-gray-200 bg-white/90 backdrop-blur dark:border-gray-700 dark:bg-gray-900/80">
-        <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-3">
-          <a href="/" className="font-kumbh-sans text-xl font-bold text-gray-900 dark:text-white">
-            Chris Ford
-          </a>
-
-          <nav className="hidden items-center gap-6 md:flex">
-            <a href="#about" className="nav-link">About</a>
-            {/*<a href="#projects" className="nav-link">Projects</a>*/}
-            <a href="#contact" className="nav-link">Contact</a>
-          </nav>
-
-          <div className="flex items-center gap-4">
-            {/* Social icons */}
-            <a
-              href="https://youtube.com/YOURCHANNEL"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-            >
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23.5 6.2a2.9 2.9 0 0 0-2-2c-1.8-.5-9.5-.5-9.5-.5s-7.7 0-9.5.5a2.9 2.9 0 0 0-2 2C0 8.1 0 12 0 12s0 3.9.5 5.8a2.9 2.9 0 0 0 2 2c1.8.5 9.5.5 9.5.5s7.7 0 9.5-.5a2.9 2.9 0 0 0 2-2c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6v-7.2L15.8 12l-6.2 3.6z" />
-              </svg>
-            </a>
-            <a
-              href="https://twitter.com/YOURHANDLE"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-            >
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23 2.999a9.56 9.56 0 0 1-2.828.807A4.936 4.936 0 0 0 22.337.365a9.864 9.864 0 0 1-3.127 1.184 4.92 4.92 0 0 0-8.388 4.482 13.95 13.95 0 0 1-10.15-5.144 4.822 4.822 0 0 0-.664 2.475 4.92 4.92 0 0 0 2.188 4.1 4.9 4.9 0 0 1-2.229-.616v.06a4.93 4.93 0 0 0 3.946 4.827 4.902 4.902 0 0 1-2.224.084 4.93 4.93 0 0 0 4.604 3.417 9.873 9.873 0 0 1-6.102 2.104c-.396 0-.788-.023-1.175-.068A13.945 13.945 0 0 0 7.548 21c9.057 0 14.01-7.496 14.01-13.986 0-.21-.005-.423-.014-.633A10.025 10.025 0 0 0 23 2.999z" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </header>
-
       {/* HERO */}
       <section className="relative">
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-primary-50 via-white to-white dark:from-gray-900 dark:via-gray-900/60 dark:to-gray-900" />
@@ -56,18 +26,18 @@ export default function Home() {
             </p>
 
             {/* Social proof */}
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-              Joined by <strong>500+</strong> builders & founders (and counting).
-            </p>
+            {/*<p className="mt-2 text-sm text-gray-500 dark:text-gray-400">*/}
+            {/*  Joined by <strong>500+</strong> builders & founders (and counting).*/}
+            {/*</p>*/}
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               {/* Make both CTAs use the same primary palette */}
               <a href="#updates" className="rounded-xl bg-primary-600 px-5 py-3 text-white shadow hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-400">
                 Follow the Journey
               </a>
-              <a href="#projects" className="rounded-xl border border-gray-300 px-5 py-3 text-gray-800 shadow-sm hover:border-gray-400 dark:border-gray-700 dark:text-gray-200">
-                See My Projects
-              </a>
+              {/*<a href="#projects" className="rounded-xl border border-gray-300 px-5 py-3 text-gray-800 shadow-sm hover:border-gray-400 dark:border-gray-700 dark:text-gray-200">*/}
+              {/*  See My Projects*/}
+              {/*</a>*/}
             </div>
           </div>
         </div>
@@ -93,7 +63,7 @@ export default function Home() {
             {/* Copy */}
             <div>
               <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-                I'm Chris — a software engineer turned solo indie developer focused on creating useful,
+                I&apos;m Chris — a software engineer turned solo indie developer focused on creating useful,
                 minimal SaaS products and showing every step of the process.
               </p>
               <p className="mt-4 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
@@ -106,63 +76,26 @@ export default function Home() {
       </section>
 
       {/* EMAIL SIGNUP */}
-      <section id="updates" className="pt-12">
+      <section id="contact" className="pt-12">
         <div className="container mx-auto max-w-5xl px-6 pb-20">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-kumbh-sans text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
               Get New Launches & Updates First
             </h2>
             <p className="mt-3 text-lg text-gray-600 dark:text-gray-300">
-              Join the list and I'll send you new apps, launches, and behind-the-scenes progress.
+              Join the list and I&apos;ll send you new apps, launches, and behind-the-scenes progress.
             </p>
           </div>
 
-          <form className="mx-auto mt-8 max-w-2xl rounded-2xl border border-gray-200 bg-white p-6 shadow-xl dark:border-gray-800 dark:bg-gray-900 md:mt-10 md:p-8">
-            <div className="grid gap-5 md:grid-cols-2">
-              <div className="md:col-span-2">
-                <Label htmlFor="email" className="mb-2 block text-gray-800 dark:text-gray-200">
-                  Email address
-                </Label>
-                <TextInput id="email" type="email" placeholder="you@domain.com" required />
-              </div>
-              <div className="md:col-span-2">
-                <Label htmlFor="firstName" className="mb-2 block text-gray-800 dark:text-gray-200">
-                  First name (optional)
-                </Label>
-                <TextInput id="firstName" type="text" placeholder="Chris" />
-              </div>
-            </div>
-
-            <div className="mt-6 grid gap-3 md:grid-cols-3">
-              <label className="inline-flex items-center gap-2">
-                <Checkbox id="indie-dev" />
-                <span className="text-sm text-gray-700 dark:text-gray-300">I'm a fellow indie dev</span>
-              </label>
-              <label className="inline-flex items-center gap-2">
-                <Checkbox id="app-user" />
-                <span className="text-sm text-gray-700 dark:text-gray-300">I'm interested in your apps</span>
-              </label>
-              <label className="inline-flex items-center gap-2">
-                <Checkbox id="needs-dev-help" />
-                <span className="text-sm text-gray-700 dark:text-gray-300">I might want help building my app</span>
-              </label>
-            </div>
-
-            <div className="mt-6">
-              <button type="submit" className="w-full rounded-xl bg-primary-600 px-5 py-3 text-white shadow hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-400 md:w-auto">
-                Get Early Access
-              </button>
-            </div>
-
-            <p className="mt-3 text-center text-xs text-gray-500 dark:text-gray-400">
-              No spam. Unsubscribe any time.
-            </p>
-
-            {/* Teaser */}
-            <p className="mt-4 text-center text-sm text-gray-600 dark:text-gray-300">
-              Next up: a lightweight <em>client reporting</em> tool for freelancers — early access goes to this list.
-            </p>
-          </form>
+          <div className="mx-auto mt-8 md:mt-10">
+            <ZohoLeadForm
+              utm_source={utm_source}
+              utm_medium={utm_medium}
+              utm_campaign={utm_campaign}
+              utm_content={utm_content}
+              utm_term={utm_term}
+            />
+          </div>
         </div>
       </section>
 
@@ -171,7 +104,7 @@ export default function Home() {
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Button
             as="a"
-            href="https://youtube.com/YOURCHANNEL"
+            href="https://www.youtube.com/channel/UCOneYkl50C8p9PgK5aWIV0A"
             target="_blank"
             rel="noopener noreferrer"
             color="gray"
@@ -191,7 +124,7 @@ export default function Home() {
 
           <Button
             as="a"
-            href="https://twitter.com/YOURHANDLE"
+            href="https://x.com/fordchristoph3r"
             target="_blank"
             rel="noopener noreferrer"
             color="gray"
@@ -209,15 +142,6 @@ export default function Home() {
             Twitter
           </Button>
         </div>
-      </section>
-
-      {/* Placeholder anchors for Projects/Contact */}
-      <section id="projects" className="container mx-auto max-w-6xl px-6 pb-24">
-        {/* TODO: replace with real project cards when ready */}
-      </section>
-
-      <section id="contact" className="container mx-auto max-w-3xl px-6 pb-24">
-        {/* You can point this to your email or a form later */}
       </section>
     </main>
   );

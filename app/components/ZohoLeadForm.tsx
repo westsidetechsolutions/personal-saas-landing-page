@@ -2,26 +2,34 @@
 
 import { useEffect, useRef } from 'react';
 
-type Props = {
-    utm_source?: string;
-    utm_medium?: string;
-    utm_campaign?: string;
-    utm_content?: string;
-    utm_term?: string;
-};
-
-export default function ZohoLeadForm({
-    utm_source = '',
-    utm_medium = '',
-    utm_campaign = '',
-    utm_content = '',
-    utm_term = '',
-}: Props) {
+export default function ZohoLeadForm() {
     const originRef = useRef<HTMLInputElement | null>(null);
+    const utmSourceRef = useRef<HTMLInputElement | null>(null);
+    const utmMediumRef = useRef<HTMLInputElement | null>(null);
+    const utmCampaignRef = useRef<HTMLInputElement | null>(null);
+    const utmContentRef = useRef<HTMLInputElement | null>(null);
+    const utmTermRef = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
         // set Origin_Page value client-side
         if (originRef.current) originRef.current.value = window.location.href;
+
+        // Read UTM parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmParams = {
+            source: urlParams.get('utm_source') || '',
+            medium: urlParams.get('utm_medium') || '',
+            campaign: urlParams.get('utm_campaign') || '',
+            content: urlParams.get('utm_content') || '',
+            term: urlParams.get('utm_term') || '',
+        };
+
+        // Set UTM values in form fields
+        if (utmSourceRef.current) utmSourceRef.current.value = utmParams.source;
+        if (utmMediumRef.current) utmMediumRef.current.value = utmParams.medium;
+        if (utmCampaignRef.current) utmCampaignRef.current.value = utmParams.campaign;
+        if (utmContentRef.current) utmContentRef.current.value = utmParams.content;
+        if (utmTermRef.current) utmTermRef.current.value = utmParams.term;
 
         // load Zoho analytics script once
         const id = 'wf_anal_custom';
@@ -50,11 +58,11 @@ export default function ZohoLeadForm({
             <input type="text" name="returnURL" defaultValue="https://chrisford.site/thanks" style={{ display: 'none' }} />
 
             {/* --- OUR UTM + ORIGIN HIDDEN FIELDS (custom Lead fields in Zoho) --- */}
-            <input type="hidden" name="UTM_Source" defaultValue={utm_source} />
-            <input type="hidden" name="UTM_Medium" defaultValue={utm_medium} />
-            <input type="hidden" name="UTM_Campaign" defaultValue={utm_campaign} />
-            <input type="hidden" name="UTM_Content" defaultValue={utm_content} />
-            <input type="hidden" name="UTM_Term" defaultValue={utm_term} />
+            <input type="hidden" name="UTM_Source" ref={utmSourceRef} defaultValue="" />
+            <input type="hidden" name="UTM_Medium" ref={utmMediumRef} defaultValue="" />
+            <input type="hidden" name="UTM_Campaign" ref={utmCampaignRef} defaultValue="" />
+            <input type="hidden" name="UTM_Content" ref={utmContentRef} defaultValue="" />
+            <input type="hidden" name="UTM_Term" ref={utmTermRef} defaultValue="" />
             <input type="hidden" name="Origin_Page" ref={originRef} defaultValue="" />
 
             {/* Honeypot from Zoho */}

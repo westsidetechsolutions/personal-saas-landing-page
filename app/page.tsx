@@ -3,15 +3,7 @@ import { Button } from "flowbite-react";
 import Image from "next/image";
 import ZohoLeadForm from './components/ZohoLeadForm';
 
-export default async function Home({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
-  const params = await searchParams;
-  const {
-    utm_source = '',
-    utm_medium = '',
-    utm_campaign = '',
-    utm_content = '',
-    utm_term = '',
-  } = params ?? {};
+export default function Home() {
   return (
     <main className="bg-white dark:bg-gray-950">
       {/* HERO */}
@@ -91,13 +83,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<Rec
           </div>
 
           <div className="mx-auto mt-8 md:mt-10">
-            <ZohoLeadForm
-              utm_source={utm_source}
-              utm_medium={utm_medium}
-              utm_campaign={utm_campaign}
-              utm_content={utm_content}
-              utm_term={utm_term}
-            />
+            <ZohoLeadForm />
           </div>
         </div>
       </section>

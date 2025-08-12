@@ -1,5 +1,6 @@
 // app/page.tsx
 import { Button } from "flowbite-react";
+import Image from "next/image";
 import ZohoLeadForm from './components/ZohoLeadForm';
 
 export default async function Home({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
@@ -55,9 +56,11 @@ export default async function Home({ searchParams }: { searchParams: Promise<Rec
 
           <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-6 rounded-2xl border border-gray-200 bg-white p-8 shadow-lg dark:border-gray-800 dark:bg-gray-900 md:flex-row md:p-10">
             {/* Headshot */}
-            <img
-              src="/HEADSHOT_URL.jpg"
+            <Image
+              src="/Chris.webp"
               alt="Chris Ford"
+              width={112}
+              height={112}
               className="h-28 w-28 flex-shrink-0 rounded-full object-cover ring-4 ring-white shadow-md dark:ring-gray-900"
             />
             {/* Copy */}

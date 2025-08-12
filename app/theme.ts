@@ -17,7 +17,9 @@ export const customTheme = {
   },
   modal: {
     title: "font-kumbh-sans text-xl font-semibold",
-    body: "font-inter",
+    body: {
+      base: "font-inter",
+    },
   },
   // Add more component overrides as needed
 };

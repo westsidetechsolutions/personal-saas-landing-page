@@ -1,6 +1,4 @@
-import type { FlowbiteTheme } from "flowbite-react";
-
-export const customTheme: FlowbiteTheme = {
+export const customTheme = {
   button: {
     color: {
       primary: "bg-primary-500 hover:bg-primary-600 text-white",

@@ -5,7 +5,7 @@ import { Button, Alert } from 'flowbite-react';
 
 // Client component for UTM tracking and analytics
 export default function ThanksContent() {
-    const [utmData, setUtmData] = useState<{
+    const [, setUtmData] = useState<{
         source?: string;
         medium?: string;
         campaign?: string;

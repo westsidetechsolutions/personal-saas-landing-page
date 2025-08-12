@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Button, Card, Badge, Alert } from 'flowbite-react';
+import { Button, Alert } from 'flowbite-react';
 
 // Client component for UTM tracking and analytics
 export default function ThanksContent() {
@@ -39,7 +39,7 @@ export default function ThanksContent() {
 
         // Fire Google Analytics conversion event if gtag exists
         if (typeof window !== 'undefined' && 'gtag' in window) {
-            (window as unknown as { gtag: Function }).gtag('event', 'lead_submit', {
+            (window as unknown as { gtag: (command: string, event: string, params: Record<string, unknown>) => void }).gtag('event', 'lead_submit', {
                 source: utmParams.source,
                 medium: utmParams.medium,
                 campaign: utmParams.campaign,
@@ -49,7 +49,8 @@ export default function ThanksContent() {
         }
     }, []);
 
-    const hasUtmData = Object.values(utmData).some(value => value);
+    // Check if we have any UTM data (commented out since it's not used)
+    // const hasUtmData = Object.values(utmData).some(value => value);
 
     return (
         <main className="bg-white dark:bg-gray-950 min-h-screen">

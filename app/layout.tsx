@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Kumbh_Sans, Inter } from "next/font/google";
 import { ThemeInit } from "../.flowbite-react/init";
 import { Providers } from "./providers";
+import Link from "next/link";
 import "./globals.css";
 
 const kumbhSans = Kumbh_Sans({
@@ -39,9 +40,9 @@ export default function RootLayout({
         {/* HEADER (sticky) */}
         <header className="sticky top-0 z-40 w-full border-b border-gray-200 bg-white/90 backdrop-blur dark:border-gray-700 dark:bg-gray-900/80">
           <div className="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-3">
-            <a href="/" className="font-kumbh-sans text-xl font-bold text-gray-900 dark:text-white">
+            <Link href="/" className="font-kumbh-sans text-xl font-bold text-gray-900 dark:text-white">
               Chris Ford
-            </a>
+            </Link>
 
             <nav className="hidden items-center gap-6 md:flex">
               <a href="#about" className="nav-link">About</a>

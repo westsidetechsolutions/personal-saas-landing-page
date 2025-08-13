@@ -53,7 +53,7 @@ export default function RootLayout({
             <div className="flex items-center gap-4">
               {/* Social icons */}
               <a
-                href="https://youtube.com/YOURCHANNEL"
+                href="https://www.youtube.com/channel/UCOneYkl50C8p9PgK5aWIV0A"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
@@ -63,7 +63,7 @@ export default function RootLayout({
                 </svg>
               </a>
               <a
-                href="https://twitter.com/YOURHANDLE"
+                href="https://x.com/fordchristoph3r"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
